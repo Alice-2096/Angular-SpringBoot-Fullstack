@@ -1,11 +1,20 @@
-<table border="1">
-  <tr>
-    <th>Id</th>
-    <th>Description</th>
-  </tr>
-  <!-- for (Todo todo: todos) -->
-  <tr *ngFor="let todo of todos">
-    <td>{{ todo.id }}</td>
-    <td>{{ todo.description }}</td>
-  </tr>
-</table>
+<div class="container">
+  <h1>My Todos</h1>
+
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Description</th>
+      <th>Is Completed?</th>
+      <th>Target Date</th>
+    </tr>
+    <!-- for (Todo todo: todos) -->
+    <tr *ngFor="let todo of todos">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.done }}</td>
+      <td>{{ todo.targetDate | date }}</td>
+      <!-- pipe -- used to converts date to another format -->
+    </tr>
+  </table>
+</div>

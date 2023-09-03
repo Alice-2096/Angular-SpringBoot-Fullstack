@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 //The class is written in TypeScript, a superset of JavaScript that adds strong typing and other features to the language.
 
 
@@ -14,13 +15,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  username = "alice";
-  password = ""; 
-  errorMessage = "Invalid credentials";
+  username : string = "alice";
+  password : string = ""; 
+  errorMessage : string = "Invalid credentials";
   invalidLogin = false;
 
   //passed in arguments will be available as a member variable 
-  constructor(private router: Router) { } 
+  constructor(private router: Router, private hardcodedAuthenicator: HardcodedAuthenticationService) { } 
 
   ngOnInit() {
     
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit{
 
   handleLogin() {
     console.log(this.username);
-    if(this.username==="alice" && this.password==="dummy") {
+    if(this.hardcodedAuthenicator.authenticate(this.username, this.password)) {
       //redirect to login page, pass in the route name 
       this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;
